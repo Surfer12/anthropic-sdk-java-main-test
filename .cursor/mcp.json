@@ -1,0 +1,882 @@
+{
+    "tools": [
+        {
+            "name": "get_kvs",
+            "description": "List all KV namespaces in your account",
+            "parameters": {}
+        },
+        {
+            "name": "kv_get",
+            "description": "Get a value from a KV namespace",
+            "parameters": {
+                "namespaceId": {
+                    "type": "string",
+                    "description": "The ID of the KV namespace"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key to retrieve"
+                }
+            }
+        },
+        {
+            "name": "kv_put",
+            "description": "Store a value in a KV namespace",
+            "parameters": {
+                "namespaceId": {
+                    "type": "string",
+                    "description": "The ID of the KV namespace"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key to store"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value to store"
+                },
+                "expirationTtl": {
+                    "type": "integer",
+                    "description": "Optional expiration time in seconds",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "kv_list",
+            "description": "List keys in a KV namespace",
+            "parameters": {
+                "namespaceId": {
+                    "type": "string",
+                    "description": "The ID of the KV namespace"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "Optional prefix to filter keys",
+                    "required": false
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Optional maximum number of keys to return",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "kv_delete",
+            "description": "Delete a key from a KV namespace",
+            "parameters": {
+                "namespaceId": {
+                    "type": "string",
+                    "description": "The ID of the KV namespace"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key to delete"
+                }
+            }
+        },
+        {
+            "name": "r2_list_buckets",
+            "description": "List all R2 buckets in your account",
+            "parameters": {}
+        },
+        {
+            "name": "r2_create_bucket",
+            "description": "Create a new R2 bucket",
+            "parameters": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the bucket to create"
+                }
+            }
+        },
+        {
+            "name": "r2_delete_bucket",
+            "description": "Delete an R2 bucket",
+            "parameters": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the bucket to delete"
+                }
+            }
+        },
+        {
+            "name": "r2_list_objects",
+            "description": "List objects in an R2 bucket",
+            "parameters": {
+                "bucket": {
+                    "type": "string",
+                    "description": "The name of the bucket"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "Optional prefix to filter objects",
+                    "required": false
+                },
+                "delimiter": {
+                    "type": "string",
+                    "description": "Optional delimiter for hierarchical listing",
+                    "required": false
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Optional maximum number of objects to return",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "r2_get_object",
+            "description": "Get an object from an R2 bucket",
+            "parameters": {
+                "bucket": {
+                    "type": "string",
+                    "description": "The name of the bucket"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key of the object to retrieve"
+                }
+            }
+        },
+        {
+            "name": "r2_put_object",
+            "description": "Put an object into an R2 bucket",
+            "parameters": {
+                "bucket": {
+                    "type": "string",
+                    "description": "The name of the bucket"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key to store the object under"
+                },
+                "content": {
+                    "type": "string",
+                    "description": "The content of the object"
+                },
+                "contentType": {
+                    "type": "string",
+                    "description": "Optional MIME type of the content",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "r2_delete_object",
+            "description": "Delete an object from an R2 bucket",
+            "parameters": {
+                "bucket": {
+                    "type": "string",
+                    "description": "The name of the bucket"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key of the object to delete"
+                }
+            }
+        },
+        {
+            "name": "d1_list_databases",
+            "description": "List all D1 databases in your account",
+            "parameters": {}
+        },
+        {
+            "name": "d1_create_database",
+            "description": "Create a new D1 database",
+            "parameters": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the database to create"
+                }
+            }
+        },
+        {
+            "name": "d1_delete_database",
+            "description": "Delete a D1 database",
+            "parameters": {
+                "databaseId": {
+                    "type": "string",
+                    "description": "The ID of the database to delete"
+                }
+            }
+        },
+        {
+            "name": "d1_query",
+            "description": "Execute a SQL query against a D1 database",
+            "parameters": {
+                "databaseId": {
+                    "type": "string",
+                    "description": "The ID of the database to query"
+                },
+                "query": {
+                    "type": "string",
+                    "description": "The SQL query to execute"
+                },
+                "params": {
+                    "type": "array",
+                    "description": "Optional parameters for the query",
+                    "items": {
+                        "type": "string"
+                    },
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "worker_list",
+            "description": "List all Workers in your account",
+            "parameters": {}
+        },
+        {
+            "name": "worker_get",
+            "description": "Get a Worker's script content",
+            "parameters": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Worker"
+                }
+            }
+        },
+        {
+            "name": "worker_put",
+            "description": "Create or update a Worker script",
+            "parameters": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Worker"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "The Worker script content"
+                },
+                "bindings": {
+                    "type": "array",
+                    "description": "Optional resource bindings for the Worker",
+                    "items": {
+                        "type": "object"
+                    },
+                    "required": false
+                },
+                "compatibility_date": {
+                    "type": "string",
+                    "description": "Optional compatibility date for the Worker",
+                    "required": false
+                },
+                "compatibility_flags": {
+                    "type": "array",
+                    "description": "Optional compatibility flags for the Worker",
+                    "items": {
+                        "type": "string"
+                    },
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "worker_delete",
+            "description": "Delete a Worker script",
+            "parameters": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Worker to delete"
+                }
+            }
+        },
+        {
+            "name": "analytics_get",
+            "description": "Retrieve analytics data for your domain",
+            "parameters": {
+                "zoneId": {
+                    "type": "string",
+                    "description": "The ID of the zone to get analytics for"
+                },
+                "since": {
+                    "type": "string",
+                    "description": "Start date/time in ISO format (e.g. 2024-01-01T00:00:00Z)"
+                },
+                "until": {
+                    "type": "string",
+                    "description": "End date/time in ISO format (e.g. 2024-01-01T23:59:59Z)"
+                }
+            }
+        },
+        {
+            "name": "claude_completion",
+            "description": "Generate text completions using Anthropic's Claude AI model",
+            "parameters": {
+                "prompt": {
+                    "type": "string",
+                    "description": "The prompt to send to Claude"
+                },
+                "model": {
+                    "type": "string",
+                    "description": "The Claude model to use (e.g., claude-7-sonnet-20250219)",
+                    "required": false
+                },
+                "max_tokens": {
+                    "type": "integer",
+                    "description": "Maximum number of tokens to generate",
+                    "required": true,
+                    "default": 1000
+                },
+                "temperature": {
+                    "type": "number",
+                    "description": "Controls randomness (0.0-1.0). Lower is more deterministic.",
+                    "required": true,
+                    "default": 1.0
+                },
+                "system": {
+                    "type": "string",
+                    "description": "System prompt that helps set Claude's behavior",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "claude_messages",
+            "description": "Generate responses using Anthropic's Claude AI model with message format",
+            "parameters": {
+                "messages": {
+                    "type": "array",
+                    "description": "Array of message objects with role and content",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "model": {
+                    "type": "string",
+                    "description": "The Claude model to use (e.g., claude-3-opus-20240229, claude-3-sonnet-20240229)",
+                    "required": false
+                },
+                "max_tokens": {
+                    "type": "integer",
+                    "description": "Maximum number of tokens to generate",
+                    "required": false
+                },
+                "temperature": {
+                    "type": "number",
+                    "description": "Controls randomness (0.0-1.0). Lower is more deterministic.",
+                    "required": false
+                },
+                "system": {
+                    "type": "string",
+                    "description": "System prompt that helps set Claude's behavior",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "embeddings_create",
+            "description": "Generate vector embeddings for text using Anthropic's embedding models",
+            "parameters": {
+                "input": {
+                    "type": "string",
+                    "description": "The text to generate embeddings for"
+                },
+                "model": {
+                    "type": "string",
+                    "description": "The embedding model to use",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "content_moderation",
+            "description": "Check if content violates content policies",
+            "parameters": {
+                "input": {
+                    "type": "string",
+                    "description": "The text content to moderate"
+                },
+                "categories": {
+                    "type": "array",
+                    "description": "Specific categories to check (e.g., hate, harassment, sexual)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "pinecone_upsert",
+            "description": "Store vector embeddings in Pinecone vector database",
+            "parameters": {
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to store vectors in"
+                },
+                "vectors": {
+                    "type": "array",
+                    "description": "Array of vector objects with id, values, and metadata",
+                    "items": {
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        {
+            "name": "pinecone_query",
+            "description": "Query vectors from Pinecone vector database",
+            "parameters": {
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to query vectors from"
+                },
+                "vector": {
+                    "type": "array",
+                    "description": "The query vector",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "topK": {
+                    "type": "integer",
+                    "description": "Number of most similar vectors to return",
+                    "required": false
+                },
+                "filter": {
+                    "type": "object",
+                    "description": "Metadata filters to apply to the query",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "pinecone_delete",
+            "description": "Delete vectors from Pinecone vector database",
+            "parameters": {
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to delete vectors from"
+                },
+                "ids": {
+                    "type": "array",
+                    "description": "Array of vector IDs to delete",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        {
+            "name": "github_create_issue",
+            "description": "Create a new issue in a GitHub repository",
+            "parameters": {
+                "owner": {
+                    "type": "string",
+                    "description": "The owner of the repository"
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "The name of the repository"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the issue"
+                },
+                "body": {
+                    "type": "string",
+                    "description": "The body content of the issue"
+                },
+                "labels": {
+                    "type": "array",
+                    "description": "Labels to apply to the issue",
+                    "items": {
+                        "type": "string"
+                    },
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "github_list_issues",
+            "description": "List issues in a GitHub repository",
+            "parameters": {
+                "owner": {
+                    "type": "string",
+                    "description": "The owner of the repository"
+                },
+                "repo": {
+                    "type": "string",
+                    "description": "The name of the repository"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "State of issues to return: open, closed, or all",
+                    "required": false
+                },
+                "labels": {
+                    "type": "string",
+                    "description": "Comma-separated list of label names",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "slack_post_message",
+            "description": "Post a message to a Slack channel",
+            "parameters": {
+                "channel": {
+                    "type": "string",
+                    "description": "The channel ID or name to post to"
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The text content of the message"
+                },
+                "blocks": {
+                    "type": "array",
+                    "description": "Rich layout blocks for the message",
+                    "items": {
+                        "type": "object"
+                    },
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "stripe_create_customer",
+            "description": "Create a new customer in Stripe",
+            "parameters": {
+                "email": {
+                    "type": "string",
+                    "description": "Customer's email address"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Customer's full name",
+                    "required": false
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description of the customer",
+                    "required": false
+                },
+                "metadata": {
+                    "type": "object",
+                    "description": "Set of key-value pairs for storing additional information",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "stripe_create_checkout",
+            "description": "Create a Stripe checkout session",
+            "parameters": {
+                "line_items": {
+                    "type": "array",
+                    "description": "Array of items the customer is purchasing",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "success_url": {
+                    "type": "string",
+                    "description": "URL to redirect to after successful payment"
+                },
+                "cancel_url": {
+                    "type": "string",
+                    "description": "URL to redirect to if payment is cancelled"
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "The mode of the checkout (payment, subscription, setup)",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "sendgrid_send_email",
+            "description": "Send an email using SendGrid",
+            "parameters": {
+                "to": {
+                    "type": "string",
+                    "description": "Recipient email address"
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "Email subject line"
+                },
+                "text": {
+                    "type": "string",
+                    "description": "Plain text content of the email"
+                },
+                "html": {
+                    "type": "string",
+                    "description": "HTML content of the email",
+                    "required": false
+                },
+                "from": {
+                    "type": "string",
+                    "description": "Sender email address",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "aws_s3_list_buckets",
+            "description": "List all S3 buckets in your AWS account",
+            "parameters": {}
+        },
+        {
+            "name": "aws_s3_list_objects",
+            "description": "List objects in an S3 bucket",
+            "parameters": {
+                "bucket": {
+                    "type": "string",
+                    "description": "The name of the S3 bucket"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "Limits the response to keys that begin with the specified prefix",
+                    "required": false
+                },
+                "max_keys": {
+                    "type": "integer",
+                    "description": "Maximum number of keys to return",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "aws_lambda_invoke",
+            "description": "Invoke an AWS Lambda function",
+            "parameters": {
+                "function_name": {
+                    "type": "string",
+                    "description": "The name or ARN of the Lambda function"
+                },
+                "payload": {
+                    "type": "object",
+                    "description": "JSON payload to pass to the function"
+                },
+                "invocation_type": {
+                    "type": "string",
+                    "description": "RequestResponse (synchronous) or Event (asynchronous)",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "openai_completion",
+            "description": "Generate text completions using OpenAI models",
+            "parameters": {
+                "model": {
+                    "type": "string",
+                    "description": "ID of the model to use (e.g., gpt-4, gpt-3.5-turbo)"
+                },
+                "prompt": {
+                    "type": "string",
+                    "description": "The prompt to generate completions for"
+                },
+                "max_tokens": {
+                    "type": "integer",
+                    "description": "Maximum number of tokens to generate",
+                    "required": false
+                },
+                "temperature": {
+                    "type": "number",
+                    "description": "Controls randomness (0.0-2.0)",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "openai_image_generation",
+            "description": "Generate images with DALL-E models",
+            "parameters": {
+                "prompt": {
+                    "type": "string",
+                    "description": "A text description of the desired image"
+                },
+                "model": {
+                    "type": "string",
+                    "description": "The model to use for image generation",
+                    "required": false
+                },
+                "n": {
+                    "type": "integer",
+                    "description": "The number of images to generate",
+                    "required": false
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The size of the generated images (e.g., 1024x1024)",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "translate_text",
+            "description": "Translate text from one language to another",
+            "parameters": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to translate"
+                },
+                "source_language": {
+                    "type": "string",
+                    "description": "The source language code (e.g., en, fr, es)"
+                },
+                "target_language": {
+                    "type": "string",
+                    "description": "The target language code (e.g., en, fr, es)"
+                }
+            }
+        },
+        {
+            "name": "summarize_text",
+            "description": "Generate a concise summary of longer text",
+            "parameters": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to summarize"
+                },
+                "max_length": {
+                    "type": "integer",
+                    "description": "Maximum length of the summary in tokens",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "memory_store",
+            "description": "Store information in the system's long-term memory",
+            "parameters": {
+                "key": {
+                    "type": "string",
+                    "description": "Unique identifier for the memory"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Content to store in memory"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Optional namespace for organizing memories",
+                    "required": false
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "Optional time-to-live in seconds",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "memory_retrieve",
+            "description": "Retrieve information from the system's long-term memory",
+            "parameters": {
+                "key": {
+                    "type": "string",
+                    "description": "Unique identifier for the memory to retrieve"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Optional namespace where the memory is stored",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "memory_search",
+            "description": "Search for memories using semantic similarity",
+            "parameters": {
+                "query": {
+                    "type": "string",
+                    "description": "The search query to find semantically similar memories"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Optional namespace to search within",
+                    "required": false
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Maximum number of results to return",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "sequential_thinking",
+            "description": "Process information through multiple reasoning steps",
+            "parameters": {
+                "input": {
+                    "type": "string",
+                    "description": "The initial input to reason about"
+                },
+                "steps": {
+                    "type": "integer",
+                    "description": "Number of reasoning steps to perform",
+                    "required": false
+                },
+                "context": {
+                    "type": "string",
+                    "description": "Additional context to consider during reasoning",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "context_manager",
+            "description": "Manage conversation context across interactions",
+            "parameters": {
+                "action": {
+                    "type": "string",
+                    "description": "Action to perform: 'store', 'retrieve', 'update', or 'clear'"
+                },
+                "context_id": {
+                    "type": "string",
+                    "description": "Unique identifier for the context"
+                },
+                "content": {
+                    "type": "object",
+                    "description": "Context content when storing or updating",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "chain_of_thought",
+            "description": "Generate a structured chain of reasoning steps",
+            "parameters": {
+                "question": {
+                    "type": "string",
+                    "description": "The question or problem to reason about"
+                },
+                "max_steps": {
+                    "type": "integer",
+                    "description": "Maximum number of reasoning steps",
+                    "required": false
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "Optional domain context (e.g., 'mathematics', 'ethics')",
+                    "required": false
+                }
+            }
+        },
+        {
+            "name": "reflection",
+            "description": "Analyze and improve previous reasoning or responses",
+            "parameters": {
+                "content": {
+                    "type": "string",
+                    "description": "The content to reflect upon and improve"
+                },
+                "criteria": {
+                    "type": "array",
+                    "description": "Specific criteria to evaluate against",
+                    "items": {
+                        "type": "string"
+                    },
+                    "required": false
+                }
+            }
+        }
+    ]
+}
